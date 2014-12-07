@@ -11,30 +11,7 @@ html
         form.registrar-form.form-horizontal(method='post', role='form')
           input(name='_csrf',type='hidden',value=csrfToken)
           div.form-group
-            label.col-sm-4 Nombre
-            div.col-sm-8
-              input.form-control(
-                placeholder='Ingresa tu nombre',
-                required=true,
-                name='nombre',
-                type='text',
-                value=nombre
-              )
-
-          div.form-group
-            label.col-sm-4 Correo Electronico
-            div.col-sm-8
-              input.form-control(
-                placeholder='Ingresa tu email',
-                required=true,
-                name='email',
-                type='text',
-                value=email
-
-              )
-
-          div.form-group
-            label.col-sm-4 Nombre de Usuario
+            label.col-sm-4 Usuario
             div.col-sm-8
               input.form-control(
                 placeholder='Ingresa tu nombre de usuario',
@@ -43,7 +20,6 @@ html
                 type='text',
                 value=user
               )
-
 
           div.form-group
             label.col-sm-4 Password
@@ -54,18 +30,42 @@ html
                 name='password',
                 type='text',
                 value=password
+
+              )
+
+          div.form-group
+            label.col-sm-4 Nombre Completo
+            div.col-sm-8
+              input.form-control(
+                placeholder='Ingresa tu nombre completo',
+                required=true,
+                name='nombre',
+                type='text',
+                value=nombre
               )
 
 
           div.form-group
-            label.col-sm-4 Rol
+            label.col-sm-4 C.I
             div.col-sm-8
               input.form-control(
-                placeholder='Rol',
+                placeholder='Ingresa tu carnet de identidad',
                 required=true,
-                name='rol',
+                name='ci',
                 type='text',
-                value=rol
+                value=ci
+              )
+
+
+          div.form-group
+            label.col-sm-4 Correo Electronico
+            div.col-sm-8
+              input.form-control(
+                placeholder='Ingresa tu correo electronico',
+                required=true,
+                name='email',
+                type='text',
+                value=email
               )
 
 
