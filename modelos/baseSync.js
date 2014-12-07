@@ -44,7 +44,6 @@ participante = myBase.define("participante",{
     unique: true
   },
   nombre: Sequelize.TEXT,
-  apellido: Sequelize.TEXT,
   correo: Sequelize.TEXT
 
 },{
@@ -229,30 +228,35 @@ usuario.hasOne(participante,{
   as: "participante"
 });
 
+/*
 participante.hasOne(usuario,{
   foreignKey: "usuario_user",
   as:"usuario"
-});
+});*/
+
 
 usuario.hasOne(expositor,{
   foreignKey: "usuario_user",
   as: "expositor"
 });
 
+/*
 expositor.hasOne(usuario,{
   foreignKey: "usuario_user",
   as:"usuario"
-});
+});*/
 
 usuario.hasOne(organizador,{
   foreignKey: "usuario_user",
   as: "organizador"
 });
 
+/*
 organizador.hasOne(usuario,{
   foreignKey: "usuario_user",
   as:"usuario"
 });
+*/
 
 //-------1-N--------------------
 
@@ -276,11 +280,26 @@ funcion.hasMany(rolFuncion,{
   as: "rol_funcion"
 });
 
+funcion.hasMany(funcionUI,{
+  foreignKey: "funcion_nombre",
+  as: "funcion_ui"
+});
+
+ui.hasMany(funcionUI,{
+  foreignKey: "ui_nombre",
+  as: "funcion_ui"
+});
 
 participante.hasMany(inscripcion,{
   foreignKey: "participante_ci",
   as: "inscripcion"
 });
+
+conferencia.hasMany(inscripcion,{
+  foreignKey: "conferencia_id",
+  as: "inscripcion"
+});
+
 
 //--------N-1----------------------
 
@@ -315,8 +334,15 @@ funcionUI.belongsTo(funcion,{
   as: "funcion"
 });
 
+inscripcion.belongsTo(conferencia,{
+  foreignKey: "conferencia_id",
+  as: "conferencia"
+});
 
-
+inscripcion.belongsTo(participante,{
+  foreignKey: "participante_ci",
+  as: "participante"
+});
 
 myBase.sync({
   force: true
@@ -350,7 +376,19 @@ var insertUser = function(nombreUsuario, pass){
     password: pass,
   });
 
-  insert.save()
+  return insert.save()
+};
+
+var insertParticipante = function(ci, user, nombre, correo){
+  var insert = participante.build({
+    ci: ci,
+    usuario_user: user,
+    nombre: nombre,
+    correo: correo
+  });
+
+  return insert.save();
+
 };
 
 var insertFuncion = function(nombreFuncion, desc){
@@ -411,3 +449,4 @@ module.exports.insertarUI = insertarUI;
 module.exports.asignarFuncionUI = asignarFuncionUI;
 module.exports.asignarRolFuncion = asignarRolFuncion;
 module.exports.asignarUserRol = asignarUserRol;
+module.exports.insertParticipante = insertParticipante;
