@@ -49,14 +49,6 @@ app.get('/expositor',function(req,res){
   });
 });
 
-app.post('/loginTest',function(req,res){
-  var user = req.body.user;
-  var pass = req.body.password;
-
-  res.send('user: ' + user + ' password: ' + pass);
-
-});
-
 app.post("/login",function(req,res){
   var username = req.body.user;
   var pass = req.body.password;
@@ -109,68 +101,35 @@ app.post("/login",function(req,res){
 
 });
 
-/*
-app.post("/login",function(req,res){
-  var username = req.body.user;
-  var pass = req.body.password;
-  //var pass = req.body.password;
-  modelos.usuario.find(username).success(function(usuario){
-    if(usuario != null){
-      if(pass == usuario.password){
-      modelos.usuario.find({
-        where:{
-          user: username
-        },
-        include:[{
-          model: modelos.usuarioRol,
-          as: "usuario_rol"
-        }]
-      }).success(function(usuario){
-          var idrol = usuario.usuario_rol[0].rol_id
-          if(idrol == 1){
-            res.render("participante",{
-              title: 'Participante'
-            });
-          }
+//prueba de captura de datos
 
-          if(idrol == 2){
-            res.render("organizador",{
-              title: 'Organizador'
-            });
-          }
+app.post("/registerTest",function(req,res){
+  var user = req.body.user;
+  var password = req.body.password;
+  var nombre = req.body.nombre;
+  var ci = req.body.ci;
+  var correo = req.body.email;
 
-      });//fin
-      }else{
-        res.send("password incorrecto");
-      }
-    }else{
-      res.send("el usuario no existe");
-    }
+  res.send("usuario: "+ user + " password: " + password + " nombre: " + nombre + " ci: " + ci + " correo: " + correo );
 
-  });
-
-});*/
-
-app.post("/register",function(req,res){
-    var usuario = req.body.user;
-    var pass = req.body.password;
-    var nombre = req.body.nombre;
-    var correo = req.body.email;
-    var rol = req.body.rol;
-
-    var usuarioNuevo = modelos.usuario.build({
-      user: usuario,
-      password: pass,
-      nombre: nombre,
-      email: correo
-    });
-
-    usuarioNuevo.save();
-    regRol(rol,usuario);
-
-    res.send("usuario registrado");
 });
 
+//registro usuario participante
+
+app.post("/register",function(req,res){
+  var user = req.body.user;
+  var password = req.body.password;
+  var nombre = req.body.nombre;
+  var ci = req.body.ci;
+  var correo = req.body.email;
+
+  modelos.insertUser(user,password).success(function(){
+    modelos.insertParticipante(ci, user, nombre, correo);
+  });
+
+  res.send("usuario registrado");
+
+});
 
 function regRol(rol, usuario){
 
