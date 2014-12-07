@@ -1,0 +1,22 @@
+{
+  "name": "sisTBD",
+  "version": "1.0.0",
+  "description": "orm system conference tbd",
+  "main": "servidor.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ORM",
+    "TBD"
+  ],
+  "author": "sass3r",
+  "license": "GPL",
+  "dependencies": {
+    "body-parser": "^1.9.3",
+    "express": "^4.10.4",
+    "jade": "^1.8.1",
+    "pg": "^4.0.0",
+    "sequelize": "^2.0.0-rc2"
+  }
+}
