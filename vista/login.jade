@@ -1,0 +1,37 @@
+html
+  head
+    title=title
+    link(href='/stylesheet/bootstrap.min.css', rel='stylesheet')
+    body
+      div.container
+
+          div.page-header
+            h1 Ingresar al Sistema
+
+          form.login-form.form-horizontal(method='post', role='form')
+            input(name='_csrf',type='hidden',value=csrfToken)
+            div.form-group
+              div.col-sm-4
+                input.form-control(
+                  placeholder='Usuario'
+                  required=true,
+                  name='user',
+                  type='text',
+                  value=user
+                )
+
+            div.form-group
+              div.col-sm-4
+                input.form-control(
+                  placeholder='Contrasenia'
+                  required=true,
+                  name='password',
+                  type='text',
+                  value=password
+                )
+
+            div.form-group
+              div.col-sm-offset-0.col-sm-4
+                button.login.btn.btn-primary(type='submit') Entrar
+            div.pull-right
+              a(href="/") Ir a pagina de inicio

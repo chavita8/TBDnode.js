@@ -1,0 +1,76 @@
+html
+  head
+    title=title
+    link(href='/stylesheet/bootstrap.min.css', rel='stylesheet')
+    body
+      div.container
+
+        div.page-header
+          h1 Registrar Cuenta
+
+        form.registrar-form.form-horizontal(method='post', role='form')
+          input(name='_csrf',type='hidden',value=csrfToken)
+          div.form-group
+            label.col-sm-4 Nombre
+            div.col-sm-8
+              input.form-control(
+                placeholder='Ingresa tu nombre',
+                required=true,
+                name='nombre',
+                type='text',
+                value=nombre
+              )
+
+          div.form-group
+            label.col-sm-4 Correo Electronico
+            div.col-sm-8
+              input.form-control(
+                placeholder='Ingresa tu email',
+                required=true,
+                name='email',
+                type='text',
+                value=email
+
+              )
+
+          div.form-group
+            label.col-sm-4 Nombre de Usuario
+            div.col-sm-8
+              input.form-control(
+                placeholder='Ingresa tu nombre de usuario',
+                required=true,
+                name='user',
+                type='text',
+                value=user
+              )
+
+
+          div.form-group
+            label.col-sm-4 Password
+            div.col-sm-8
+              input.form-control(
+                placeholder='Ingresa tu password',
+                required=true,
+                name='password',
+                type='text',
+                value=password
+              )
+
+
+          div.form-group
+            label.col-sm-4 Rol
+            div.col-sm-8
+              input.form-control(
+                placeholder='Rol',
+                required=true,
+                name='rol',
+                type='text',
+                value=rol
+              )
+
+
+          div.form-group
+            div.col-sm-offset-4.col-sm-8
+              button.registrar.btn.btn-primary(type='submit') Registrar
+          div.pull-right
+            a(href="/") Ir a pagina de inicio
