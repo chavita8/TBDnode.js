@@ -220,7 +220,7 @@ inscripcion = myBase.define("inscripcion",{
 });
 
 
-/*
+
 //------RELACIONES
 //---1-1
 
@@ -276,15 +276,15 @@ funcion.hasMany(rolFuncion,{
   as: "rol_funcion"
 });
 
-/*
+
 participante.hasMany(inscripcion,{
   foreignKey: "participante_ci",
   as: "inscripcion"
-});*/
+});
 
 //--------N-1----------------------
 
-/*
+
 usuarioRol.belongsTo(usuario,{
   foreignKey: "usuario_user",
   as: "usuario"
@@ -315,7 +315,7 @@ funcionUI.belongsTo(funcion,{
   as: "funcion"
 });
 
-*/
+
 
 
 myBase.sync({
