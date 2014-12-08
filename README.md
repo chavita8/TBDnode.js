@@ -1,3 +1,6 @@
+#TBDnode.js
+Sistema de conferencias para el taller de base de datos
+utilizamos node..js, sequelize y postgresql.
                .__                .__  __
           ____ |  |__ _____ ___  _|__|/  |______
         _/ ___\|  |  \\__  \\  \/ /  \   __\__  \
@@ -16,7 +19,3 @@
          \___ \  / __ \_\___ \ \___ \ /       \  | \/
         /____  >(____  /____  >____  >______  /__|
              \/      \/     \/     \/       \/
-
-#TBDnode.js
-Sistema de conferencias para el taller de base de datos
-utilizamos node..js, sequelize y postgresql.
