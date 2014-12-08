@@ -1,6 +1,6 @@
 var express = require('express');
 var bodyParser = require("body-parser");
-var modelos = require("./modelos/baseSync.js");
+var modelo = require("./modelo/base.js");
 
 var app = express();
 app.set('views','./vista');
@@ -53,12 +53,12 @@ app.post("/login",function(req,res){
   var username = req.body.user;
   var pass = req.body.password;
 
-  modelos.usuario.find({
+  modelo.usuario.find({
     where: {
       user: username
     },
     include:[{
-      model: modelos.usuarioRol,
+      model: modelo.usuarioRol,
       as: "usuario_rol"
     }]
   }).success(function(usuario){
@@ -66,12 +66,12 @@ app.post("/login",function(req,res){
       var passwd = usuario.password;
       if(pass == passwd){
         var rolid = usuario.usuario_rol[0].rol_id;
-        modelos.rol.find({
+        modelo.rol.find({
           where:{
             id: rolid
           },
           include:[{
-            model: modelos.rolFuncion,
+            model: modelo.rolFuncion,
             as: "rol_funcion"
           }]
         }).success(function(rol){
@@ -123,8 +123,9 @@ app.post("/register",function(req,res){
   var ci = req.body.ci;
   var correo = req.body.email;
 
-  modelos.insertUser(user,password).success(function(){
-    modelos.insertParticipante(ci, user, nombre, correo);
+  modelo.insertUser(user,password).success(function(){
+    modelo.insertParticipante(ci, user, nombre, correo);
+
   });
 
   res.send("usuario registrado");
@@ -147,7 +148,7 @@ function regRol(rol, usuario){
     usuarioRol.rol_id = 2;
   }
 
-  var userRol = modelos.usuarioRol.build(usuarioRol);
+  var userRol = modelo.usuarioRol.build(usuarioRol);
 
   userRol.save();
 

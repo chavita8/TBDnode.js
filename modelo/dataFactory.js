@@ -1,4 +1,4 @@
-var modelo = require('./baseSync.js');
+var modelo = require('./base.js');
 
 
 //----organizador---------------------

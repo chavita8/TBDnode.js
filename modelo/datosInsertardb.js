@@ -1,4 +1,4 @@
-var modelo = require("./baseSync.js");
+var modelo = require("./base.js");
 
 //----organizador---------------------
 modelo.insertRol(1,"organizador");
