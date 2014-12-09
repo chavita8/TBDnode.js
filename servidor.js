@@ -49,6 +49,12 @@ app.get('/expositor',function(req,res){
   });
 });
 
+app.get('/regorg',function(req,res){
+  res.render('regorg',{
+    title: 'registrar organizador'
+  })
+})
+
 app.post("/login",function(req,res){
   var username = req.body.user;
   var pass = req.body.password;
@@ -82,8 +88,20 @@ app.post("/login",function(req,res){
             func[i++] = funcion.funcion_nombre;
           });
 
-          func.forEach(function(fun){
-            console.log(fun);
+          var funcionui = [];
+          var j = 0;
+
+          func.forEach(function(nombreFuncion){
+            modelo.funcionUI.find(nombreFuncion).success(function(funcionUI){
+              funcionui[j++] = {
+                funcion: nombreFuncion,
+                ui: funcionUI.ui_nombre
+              };
+            });
+          });
+
+          funcionui.forEach(function(funcionUI){
+            console.log("funcion: " + funcionUI.funcion + " ui: " + funcionUI.ui);
           });
 
 
@@ -131,6 +149,23 @@ app.post("/register",function(req,res){
   res.send("usuario registrado");
 
 });
+
+app.post("/regorg",function(req,res){
+  var user = req.body.user;
+  var password = req.body.password;
+  var nombre = req.body.nombre;
+  var ci = req.body.ci;
+  var correo = req.body.email;
+
+  modelo.insertUser(user,password).success(function(){
+    modelo.insertOrganizador(ci, user, nombre, correo);
+    modelo.asignarUserRol(user, 1);
+  });
+
+  res.send("usuario organizador registrado");
+
+});
+
 
 function regRol(rol, usuario){
 

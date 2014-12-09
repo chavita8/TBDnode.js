@@ -3,7 +3,7 @@ var Sequelize = require("sequelize");
 
 var myBase = new Sequelize("nodeSystem","nodeSystem","node",{
   dialect: "postgres",
-  host: "chavita",
+  host: "ultra",
   port: 5432,
   define:{
     timestamps:false,
@@ -62,7 +62,6 @@ expositor = myBase.define("expositor",{
     referencesKey: "user"
   },
   nombre: Sequelize.TEXT,
-  apellido: Sequelize.TEXT,
   correo: Sequelize.TEXT,
   tema: Sequelize.TEXT
 },{
@@ -81,7 +80,6 @@ organizador = myBase.define("organizador",{
     referencesKey: "user"
   },
   nombre: Sequelize.TEXT,
-  apellido: Sequelize.TEXT,
   correo: Sequelize.TEXT
 },{
   tableName: "organizador"
@@ -390,6 +388,19 @@ var insertParticipante = function(ci, user, nombre, correo){
 
 };
 
+var insertOrganizador = function(ci, user, nombre, correo){
+  var insert = organizador.build({
+    ci: ci,
+    usuario_user: user,
+    nombre: nombre,
+    correo: correo
+  });
+
+  return insert.save();
+
+};
+
+
 var insertFuncion = function(nombreFuncion, desc){
   var insert = funcion.build({
     nombre: nombreFuncion,
@@ -449,3 +460,4 @@ module.exports.asignarFuncionUI = asignarFuncionUI;
 module.exports.asignarRolFuncion = asignarRolFuncion;
 module.exports.asignarUserRol = asignarUserRol;
 module.exports.insertParticipante = insertParticipante;
+module.exports.insertOrganizador = insertOrganizador;
