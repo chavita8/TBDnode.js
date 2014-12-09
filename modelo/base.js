@@ -3,7 +3,7 @@ var Sequelize = require("sequelize");
 
 var myBase = new Sequelize("nodeSystem","nodeSystem","node",{
   dialect: "postgres",
-  host: "ultra",
+  host: "chavita",
   port: 5432,
   define:{
     timestamps:false,
@@ -366,7 +366,6 @@ var asignarUserRol = function(user, rolId){
     usuario_user: user,
     rol_id: rolId,
   });
-
   insertUserRol.save();
 };
 
