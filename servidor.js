@@ -125,7 +125,7 @@ app.post("/register",function(req,res){
 
   modelo.insertUser(user,password).success(function(){
     modelo.insertParticipante(ci, user, nombre, correo);
-
+    modelo.asignarUserRol(user, 3);
   });
 
   res.send("usuario registrado");
