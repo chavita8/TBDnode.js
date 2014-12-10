@@ -89,16 +89,22 @@ app.post("/login",function(req,res){
           });
 
           var funcionui = [];
-          var j = 0;
+          var ui;
 
           func.forEach(function(nombreFuncion){
             modelo.funcionUI.find(nombreFuncion).success(function(funcionUI){
-              funcionui[j++] = {
-                funcion: nombreFuncion,
+              //console.log("funcion: " + funcionUI.funcion_nombre + " ui: " + funcionUI.ui_nombre);
+              ui.funcion = funcionUI.funcion_nombre;
+              ui.vista = funcionUI.ui_nombre;
+              funcionui.push(ui);
+              /*
+              funcionui.push({
+                funcion: funcionUI.funcion_nombre,
                 ui: funcionUI.ui_nombre
-              };
+              });*/
             });
           });
+
 
           funcionui.forEach(function(funcionUI){
             console.log("funcion: " + funcionUI.funcion + " ui: " + funcionUI.ui);
@@ -146,7 +152,11 @@ app.post("/register",function(req,res){
     modelo.asignarUserRol(user, 3);
   });
 
-  res.send("usuario registrado");
+  res.render("exito",{
+    title: "exito",
+    inicio: "/"
+  });
+
 
 });
 
@@ -162,8 +172,17 @@ app.post("/regorg",function(req,res){
     modelo.asignarUserRol(user, 1);
   });
 
-  res.send("usuario organizador registrado");
+  res.render("exito",{
+    title: "exito",
+    inicio: "/organizador"
+  });
 
+});
+
+app.get("/exito",function(req,res){
+  res.render("exito",{
+    title: "exito!"
+  });
 });
 
 
