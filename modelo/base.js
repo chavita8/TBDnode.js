@@ -3,7 +3,7 @@ var Sequelize = require("sequelize");
 
 var myBase = new Sequelize("nodeSystem","nodeSystem","node",{
   dialect: "postgres",
-  host: "ultra",
+  host: "chavita",
   port: 5432,
   define:{
     timestamps:false,
@@ -441,7 +441,12 @@ var asignarFuncionUI = function(funcion,ui){
 
 };
 
-
+var insertarConf = function(nombre){
+  var insertarConf = conferencia.build({
+    nombre: nombre
+  });
+  insertarConf.save();
+};
 
 
 //exportamos nuestros modelos
@@ -461,3 +466,4 @@ module.exports.asignarRolFuncion = asignarRolFuncion;
 module.exports.asignarUserRol = asignarUserRol;
 module.exports.insertParticipante = insertParticipante;
 module.exports.insertOrganizador = insertOrganizador;
+module.exports.insertarConf = insertarConf;

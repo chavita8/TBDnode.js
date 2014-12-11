@@ -55,6 +55,32 @@ app.get('/regorg',function(req,res){
   })
 })
 
+app.get('/regex',function(req,res){
+  res.render('regex',{
+    title: 'registrar expositor'
+  })
+})
+
+app.get('/regconf',function(req,res){
+  res.render('regconf',{
+    title: 'registrar conferencias'
+  })
+})
+
+app.post("/regconf",function(req,res){
+  var nombre = req.body.nombre;
+
+  modelo.insertarConf(nombre);
+  res.send("conferencia creada");
+});
+
+app.get('/inscripcion',function(req,res){
+  res.render("inscripcion",{
+    title: "inscripcion"
+    confs: modelo.conferencia.findAll();
+  })
+})
+
 app.post("/login",function(req,res){
   var username = req.body.user;
   var pass = req.body.password;
@@ -126,6 +152,7 @@ app.post("/login",function(req,res){
 });
 
 //prueba de captura de datos
+
 
 app.post("/registerTest",function(req,res){
   var user = req.body.user;
